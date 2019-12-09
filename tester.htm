@@ -1,0 +1,55 @@
+<html>
+
+<head>
+    <style>
+        .todoDone {
+            text-decoration: line-through;
+        }
+    </style>
+
+</head>
+
+<body>
+    <input id="todoInput" type="text" onkeydown=" if(event.keyCode === 13)addTodo(this)">
+    <div id="outputDiv"></div>
+
+    <script>
+        //Model
+        let output = document.getElementById('outputDiv');
+        let input = document.getElementById('todoInput');
+        let todoItem = ' ';
+        let todoArray = [];
+
+
+        makeHTML();
+
+
+        //View
+        function makeHTML() {
+            output.innerHTML = `
+                    <p> Her er din Todo: </p>
+                 
+                    <ul>
+                        
+                         ${todoArray.map((todoitems, i) => `
+                       
+                          <li id="${i}"> 
+                          Todo # ${i}:  ${todoitems} 
+                          </li> 
+                            `).join('')}
+                    </ul>
+                    `;
+            }
+    
+            //Controller
+            function addTodo(newTodoFromInput) {
+    
+                todoItem = newTodoFromInput.value;
+                todoArray.push(newTodoFromInput.value);
+                
+                makeHTML(); 
+            }
+    </script>
+</body>
+
+</html>
