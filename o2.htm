@@ -9,15 +9,14 @@
         <svg id="chart" width="500" viewBox="0 0 80 60"></svg>
     </div>
     Valgt stolpe: <i id="chosenBar">ingen</i><br /> Verdi: <input id="inbox" type="number" min="1" max="10" />
-    <button id="addBar" onclick="adde(chosenBarNumber)">Legg til stolpe</button>
-    <button id="changeBar" onclick="change(chosenBarNumber)" disabled>Endre valgt stolpe</button><br />
-    <button id="removeBar" onclick="remove(chosenBarNumber)" disabled>Fjerne valgt stolpe</button>
+    <button id="addBar" onclick="adde()">Legg til stolpe</button>
+    <button id="changeBar" onclick="change()" disabled>Endre valgt stolpe</button><br />
+    <button id="removeBar" onclick="remove()" disabled>Fjerne valgt stolpe</button>
 
 
 
     <script>
         let svgTag = document.getElementById('chart');
-        let chosenBarNumber = "ingen";
         let chosenBarText = document.getElementById("chosenBarText");
         let chosenBar = document.getElementById("chosenBar");
         let inbox = document.getElementById("inbox");
@@ -27,9 +26,7 @@
 
         //Moddel 
         let numbers = [8, 7, 6, 5, 4];
-
-
-
+        let chosenBarNumber = "ingen";
 
         //View
         show();
@@ -94,13 +91,13 @@
             show();
         }
 
-        function remove(chosen) {
-            numbers.splice(chosen - 1, 1);
+        function remove() {
+            numbers.splice(chosenBarNumber - 1, 1);
 
             show();
         }
 
-        function adde(chosen) {
+        function adde() {
 
             if (inbox.value > 10) {
                 alert("max 10!")
@@ -112,14 +109,14 @@
             show();
         }
 
-        function change(chosen) {
+        function change() {
 
             if (inbox.value > 10) {
                 alert("max 10!")
             } else if (inbox.value < 1) {
                 alert("mins 1!")
             } else {
-                numbers[chosen - 1] = inbox.value;
+                numbers[chosenBarNumber - 1] = inbox.value;
             }
             show();
         }
